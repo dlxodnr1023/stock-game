@@ -363,10 +363,9 @@ function command_f() {
             alert("개발자 모드를 종료했습니다.");
             madegame = false;
     }
-        if(command==1972) {
+        if(command=="1972") {
             localStorage.setItem('code', JSON.stringify(`1972년 11월 23일 김두한은 오랜지병으로 사망하였다. [1972]`));a
-	alert("1972년 11월 23일..")
-            madegame = false;
+	     alert("1972년 11월 23일..")
     }
 }
 setInterval(updateGame, 1000);
