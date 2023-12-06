@@ -209,7 +209,7 @@
         }
     } 
     document.getElementById('money').innerText = '현재 잔액 : ' + money + "$" + ` (주식 : ${stockCount * stockValue}$)`;
-}
+		 }
 
 document.getElementById("stockBuy").addEventListener("click", function(event) {
   if (event.ctrlKey) {
@@ -222,7 +222,6 @@ document.getElementById("stockBuy").addEventListener("click", function(event) {
                 var audio = new Audio('sound/back.mp3');
         audio.play();
     }
-  }else
   }else{
 	    if (money >= stockValue * Number(document.getElementById("buy").value)) {
         var audio2 = new Audio('sound/buy.mp3');
