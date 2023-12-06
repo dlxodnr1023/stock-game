@@ -213,7 +213,16 @@
 
 document.getElementById("stockBuy").addEventListener("click", function(event) {
   if (event.ctrlKey) {
-    alert("Ctrl 키를 누른 상태에서 버튼을 클릭했습니다!");
+        if(money>=stockValue) {
+			var audio2 = new Audio('sound/buy.mp3');
+                audio2.play();
+		stockCount += Math.floor(money / stockValue)
+		money -= Math.floor(money / stockValue) * stockValue
+		}else{
+                var audio = new Audio('sound/back.mp3');
+        audio.play();
+    }
+  }else
   }else{
 	    if (money >= stockValue * Number(document.getElementById("buy").value)) {
         var audio2 = new Audio('sound/buy.mp3');
@@ -221,14 +230,6 @@ document.getElementById("stockBuy").addEventListener("click", function(event) {
 
         money -= stockValue * Number(document.getElementById("buy").value);
         stockCount += Number(document.getElementById("buy").value);
-
-         stockText.innerText = stockValue + "$"; // Set the text of the stock value
-    stockText.style.position = 'absolute'; // Position it absolutely
-    stockText.style.bottom = (stockValue+10) + 'px'; // Position it above the line
-    stockText.style.left = line.style.left; // Align it with the line
-    stockText.style.fontSize = 10.5 + "px";
-    stockText.style.color = "White"
-    chart.appendChild(buyText);
     }else{
         var audio = new Audio('sound/back.mp3');
         audio.play();
@@ -246,6 +247,7 @@ document.getElementById("stockSell").addEventListener("click", function(event) {
 		}else{
                 var audio = new Audio('sound/back.mp3');
         audio.play();
+    }
   }else{
             if (stockCount >= Number(document.getElementById("buy").value)) {
                 var audio2 = new Audio('sound/buy.mp3');
