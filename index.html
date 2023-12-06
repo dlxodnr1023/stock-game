@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>주식 게임</title>
+    <title>[ 주식 게임 ] 제작 : 이태욱</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap');
         body {
@@ -85,7 +85,7 @@
     <input type="text" placeholder="0" id="buy" value="1">
 </div>
     <script>
-        var stockValue = 100;
+        var stockValue = 100,
         stockValue2 = 0,
         stockCount = 0,
         money = 100,
@@ -96,14 +96,17 @@
         month = 11,
         day = 24,
         hour = 0,
+        madegame = false,
         event_on = false;
+
+        
                  function updateGame() {
+                   var line = document.createElement('div'),
+        stockText = document.createElement('div'),
+        buyText = document.createElement('div');
     eventstime++
     stockValue2 = stockValue;
     stockValue += Math.floor(Math.random() * 31) - 20;
-    var line = document.createElement('div');
-    var stockText = document.createElement('div');
-    var buyText = document.createElement('div');
     if(eventstime==3) {
                 document.getElementById('events').innerText= '============'
                 document.getElementById('events2').innerText= '=='
@@ -228,9 +231,6 @@
         var audio = new Audio('sound/back.mp3');
         audio.play();
     }
-    document.getElementById('stockCount').innerText = '현재 주식 수량 : ' + stockCount + '개';
-    document.getElementById('money').innerText = '현재 잔액 : ' + money + "$" + ` (주식 : ${stockCount * stockValue}$)`;
-    return money;
 }
 
 
@@ -244,9 +244,6 @@
                 var audio = new Audio('sound/back.mp3');
         audio.play();
             }
-            document.getElementById('stockCount').innerText = '현재 주식 수량 : ' + stockCount + '개';
-            document.getElementById('money').innerText = '현재 잔액 : ' + money + "$" + ` (주식 : ${stockCount * stockValue}$)`;
-            return money;
         }
         function times() {
             hour++
@@ -264,11 +261,9 @@
             }
             document.getElementById('time').innerText= `${year}년 ${month}월 ${day}일 ${hour < 10 ? '0' + hour : hour}시 기준`
         }
-        setInterval(updateGame, 1000);
-        setInterval(times, 41.6666666667);
 
         function save() {
-            if(localStorage.getItem('code')>=111111) {
+            if(localStorage.getItem('code')!==null) {
                 if(confirm("백업 파일 " + localStorage.getItem('code') + "가 있습니다. 저장 파일을 삭제하고 저장하시겠습니까?")) {
                     localStorage.setItem('M', JSON.stringify(money));
             localStorage.setItem('SV', JSON.stringify(stockValue));
@@ -287,15 +282,90 @@
             }
         }
         function load() {
-            if(confirm(localStorage.getItem('code') + "을 플레이 하시겠습니까?")==true) {
+            if(localStorage.getItem('code')!==null) {
+                if(confirm(localStorage.getItem('code') + "을 플레이 하시겠습니까?")==true) {
                 money = Number(localStorage.getItem('M'))
             stockValue =  Number(localStorage.getItem('SV'))
             sotckCount =  Number(localStorage.getItem('SC'))
             document.getElementById("buy").innerText =  Number(localStorage.getItem('IB'))
             alert("성공적으로 불러왔습니다!")
             }
+            }else{
+                alert("저장된 파일이 없습니다.")
+            }
 
         }
+        document.addEventListener('keydown', function(event) {
+  if (event.key === '`') {
+    if(madegame==false) {
+        if(prompt("개발자 모드 입장 코드를 입력하세요")=="dldbghksdkatkf") {
+        alert("환영합니다!")
+        madegame = true
+        command_f();
+    }else{
+        alert("입장 코드가 틀렸습니다")
+    }
+
+    }else{
+        command_f();
+    }
+    }
+    if (event.keyCode == 27) {
+        if(confirm("게임을 다시 시작하시겠습니까?")==true) {
+        location.reload();
+        }
+    }
+});
+
+function command_f() {
+    var command = prompt("명령어를 입력하세요.")
+    if(command.startsWith("give money")) {
+        if(isNaN(Number(command.replace("give money ", "")))!==true) {
+            money += Number(command.replace("give money", ""))
+        }else{
+            alert(`명령구문이 잘못되었습니다. \n예 : give money 1000`)
+            
+        }
+    }
+    if(command.startsWith("set money")) {
+        if(isNaN(Number(command.replace("set money ", "")))!==true) {
+            money = Number(command.replace("set money", ""))
+        }else{
+            alert(`명령구문이 잘못되었습니다. \n예 : set money 1000`)
+            
+        }
+    }
+    if(command.startsWith("give stockValue")) {
+        if(isNaN(Number(command.replace("give stockValue ", "")))!==true) {
+            if(Number(command.replace("give stockValue ", ""))>250) {
+                alert("해당 명령어의 최대 수치는 250입니다")
+            }else{
+            stockValue += Number(command.replace("give stockValue ", ""))
+            }
+        }else{
+            alert(`명령구문이 잘못되었습니다. \n예 : give stockValue 1000`)
+            
+        }
+    }
+    if(command.startsWith("set stockValue")) {
+        if(isNaN(Number(command.replace("set stockValue ", "")))!==true) {
+            if(Number(command.replace("set stockValue ", ""))>250) {
+                alert("해당 명령어의 최대 수치는 250입니다")
+            }else{
+            stockValue = Number(command.replace("set stockValue ", ""))
+            }
+        }else{
+            alert(`명령구문이 잘못되었습니다. \n예 : set stockValue 1000`)
+            
+        }
+    }
+}
+setInterval(updateGame, 1000);
+setInterval(times, 41.6666666667);
+    setInterval(function() {
+        document.getElementById('money').innerText = '현재 잔액 : ' + money + "$" + ` (주식 : ${stockCount * stockValue}$)`;
+    document.getElementById('stockCount').innerText = '현재 주식 수량 : ' + stockCount + '개';
+    }, 1);
     </script>
 </body>
 </html>
