@@ -301,13 +301,13 @@
         if(prompt("개발자 모드 입장 코드를 입력하세요")=="dldbghksdkatkf") {
         alert("환영합니다!")
         madegame = true
-        command_f();
+        Fcommand();
     }else{
         alert("입장 코드가 틀렸습니다")
     }
 
     }else{
-        command_f();
+        Fcommand();
     }
     }
     if (event.keyCode == 27) {
@@ -317,7 +317,7 @@
     }
 });
 
-function command_f() {
+function Fcommand() {
     var command = prompt("명령어를 입력하세요.")
     if(command.startsWith("give money")) {
         if(isNaN(Number(command.replace("give money ", "")))!==true) {
@@ -369,20 +369,20 @@ function command_f() {
     }
     if(command.startsWith("give stockCount")) {
         if(isNaN(Number(command.replace("give stockCount ", "")))!==true) {
-            stockCount += Number(command.replace("give stockCount ", ""))
-            }
+            stockCount += Number(command.replace("give stockCount", ""))
         }else{
-            alert(`명령구문이 잘못되었습니다. \n예 : set stockCount 1000`)
+            alert(`명령구문이 잘못되었습니다. \n예 : give stockCount 1000`)
             
         }
-	    if(command.startsWith("set stockCount")) {
+    }
+    if(command.startsWith("set stockCount")) {
         if(isNaN(Number(command.replace("set stockCount ", "")))!==true) {
-            stockCount = Number(command.replace("set stockCount ", ""))
-            }
+            stockCount = Number(command.replace("set stockCount", ""))
         }else{
             alert(`명령구문이 잘못되었습니다. \n예 : set stockCount 1000`)
             
         }
+    }
 
 setInterval(updateGame, 1000);
 setInterval(times, 41.6666666667);
