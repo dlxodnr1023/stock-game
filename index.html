@@ -374,7 +374,7 @@ function Fcommand() {
             alert(`명령구문이 잘못되었습니다. \n예 : give stockCount 1000`)
             
         }
-    }
+		}
     if(command.startsWith("set stockCount")) {
         if(isNaN(Number(command.replace("set stockCount ", "")))!==true) {
             stockCount = Number(command.replace("set stockCount", ""))
