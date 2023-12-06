@@ -80,8 +80,8 @@
     <input type="button" onclick="save()" value="저장">
     <input type="button" onclick="load()" value="불러오기">
 </div>
-    <button onclick="buyStock()">주식 구매</button>
-    <button onclick="sellStock()">주식 판매</button>
+    <button id="stockBuy">주식 구매</button>
+    <button id="stockSell">주식 판매</button>
     <input type="text" placeholder="0" id="buy" value="1">
 </div>
     <script>
@@ -211,9 +211,11 @@
     document.getElementById('money').innerText = '현재 잔액 : ' + money + "$" + ` (주식 : ${stockCount * stockValue}$)`;
 }
 
-
-        function buyStock() {
-    if (money >= stockValue * Number(document.getElementById("buy").value)) {
+document.getElementById("stockBuy").addEventListener("click", function(event) {
+  if (event.ctrlKey) {
+    alert("Ctrl 키를 누른 상태에서 버튼을 클릭했습니다!");
+  }else{
+	    if (money >= stockValue * Number(document.getElementById("buy").value)) {
         var audio2 = new Audio('sound/buy.mp3');
         audio2.play();
 
@@ -232,6 +234,8 @@
         audio.play();
     }
 }
+}
+});
 
 
         function sellStock() {
