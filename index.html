@@ -65,7 +65,7 @@
     </div>
     <div id="chart"></div>
     <div id ="text">
-    <p id="stockValue">현재 주가 : 100$</p> 
+    <p id="stockValue">현재 1주당 주가 : 100$</p> 
     <p id="stockCount">현재 주식 수량 : 0개</p> 
     <p id="money">현재 잔액 : 100$ (주식 : 0$)</p>
     <div style="display: flex; justify-content: center;">
@@ -80,8 +80,8 @@
     <input type="button" onclick="save()" value="저장">
     <input type="button" onclick="load()" value="불러오기">
 </div>
-    <button id="stockBuy">주식 구매</button>
-    <button id="stockSell">주식 판매</button>
+    <button id="stockBuy">주식 매수</button>
+    <button id="stockSell">주식 매도</button>
     <input type="text" placeholder="0" id="buy" value="1">
 </div>
     <script>
@@ -141,7 +141,7 @@
                  }
     if (event>=0 && event<=1) {
         line.style.backgroundColor = 'red';
-        stockValue += 39 + Math.floor(Math.random() * 70, 100);
+        stockValue += Math.floor(Math.random() * 70, 100);
         document.getElementById('events').innerText= '[속보] 샘송전자 신제품의 대흥행!'
         event_on = true;
     }
