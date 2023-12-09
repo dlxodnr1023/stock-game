@@ -285,6 +285,7 @@ document.getElementById("stockSell").addEventListener("click", function(event) {
             localStorage.setItem('IB', JSON.stringify(Number(document.getElementById("buy").value)));
             localStorage.setItem('code', JSON.stringify(`${year}년 ${month}월 ${day}일 [${Math.floor(Math.random()* 111111, 999999)}]`)); 
             alert(`성공적으로 저장했습니다!\n${localStorage.getItem('code')}`)
+	localStorage.setItem('pw', JSON.stringify(prompt("백업 파일의 비밀번호를 정해주세요.")));
                 }
             }else{
             localStorage.setItem('M', JSON.stringify(money));
@@ -404,7 +405,6 @@ setInterval(times, 41.6666666667);
         document.getElementById('money').innerText = '현재 잔액 : ' + money + "$" + ` (주식 : ${stockCount * stockValue}$)`;
     document.getElementById('stockCount').innerText = '현재 주식 수량 : ' + stockCount + '개';
     }, 1);
-alert("할 말이 없네")
     </script>
 </body>
 </html>
