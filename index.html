@@ -294,17 +294,20 @@ document.getElementById("stockSell").addEventListener("click", function(event) {
             localStorage.setItem('IB', JSON.stringify(Number(document.getElementById("buy").value)));
             localStorage.setItem('code', JSON.stringify(`${year}년 ${month}월 ${day}일 [${Math.floor(Math.random()* 111111, 999999)}]`)); 
             alert(`성공적으로 저장했습니다!\n${localStorage.getItem('code')}`)
+	localStorage.setItem('pw', JSON.stringify(prompt("백업 파일의 비밀번호를 정해주세요.")));
             }
         }
         function load() {
             if(localStorage.getItem('code')!==null) {
                 if(confirm(localStorage.getItem('code') + "을 플레이 하시겠습니까?")==true) {
+			if(prompt("백업파일의 비밀번호를 입력하세요")==localStorage.getItem('pw')) {
                 money = Number(localStorage.getItem('M'))
             stockValue =  Number(localStorage.getItem('SV'))
             sotckCount =  Number(localStorage.getItem('SC'))
             document.getElementById("buy").innerText =  Number(localStorage.getItem('IB'))
             alert("성공적으로 불러왔습니다!")
             }
+		}
             }else{
                 alert("저장된 파일이 없습니다.")
             }
