@@ -300,7 +300,7 @@ document.getElementById("stockSell").addEventListener("click", function(event) {
         function load() {
             if(localStorage.getItem('code')!==null) {
                 if(confirm(localStorage.getItem('code') + "을 플레이 하시겠습니까?")==true) {
-			if(prompt("백업파일의 비밀번호를 입력하세요")==localStorage.getItem('pw')) {
+			if(prompt("백업파일의 비밀번호를 입력하세요")==localStorage.getItem('pw').toString) {
                 money = Number(localStorage.getItem('M'))
             stockValue =  Number(localStorage.getItem('SV'))
             sotckCount =  Number(localStorage.getItem('SC'))
