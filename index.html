@@ -306,7 +306,9 @@ document.getElementById("stockSell").addEventListener("click", function(event) {
             sotckCount =  Number(localStorage.getItem('SC'))
             document.getElementById("buy").innerText =  Number(localStorage.getItem('IB'))
             alert("성공적으로 불러왔습니다!")
-            }
+            }else{
+				alert("비밀번호가 잘못되었습니다.")
+			}
 		}
             }else{
                 alert("저장된 파일이 없습니다.")
@@ -402,6 +404,8 @@ function Fcommand() {
         }
     }
 }
+
+      
 setInterval(updateGame, 1000);
 setInterval(times, 41.6666666667);
     setInterval(function() {
