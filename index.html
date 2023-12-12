@@ -298,24 +298,25 @@ document.getElementById("stockSell").addEventListener("click", function(event) {
 	localStorage.setItem('pw', JSON.stringify(prompt("백업 파일의 비밀번호를 정해주세요.")));
             }
         }
-        function load() {
-            if(localStorage.getItem('code')!==null) {
-                if(confirm(localStorage.getItem('code') + "을 플레이 하시겠습니까?")==true) {
-			if(prompt("백업파일의 비밀번호를 입력하세요")==localStorage.getItem('pw').toString) {
-                money = Number(localStorage.getItem('M'))
-            stockValue =  Number(localStorage.getItem('SV'))
-            sotckCount =  Number(localStorage.getItem('SC'))
-            document.getElementById("buy").innerText =  Number(localStorage.getItem('IB'))
-            alert("성공적으로 불러왔습니다!")
-            }else{
-				alert("비밀번호가 잘못되었습니다.")
-			}
-		}
-            }else{
-                alert("저장된 파일이 없습니다.")
-            }
+       function load() {
+  if (localStorage.getItem('code') !== null) {
+    if (confirm(`${localStorage.getItem('code')}을 플레이 하시겠습니까?`)) {
+      var password = prompt("백업파일의 비밀번호를 입력하세요.");
+      if (password == JSON.parse(localStorage.getItem('pw'))) {
+        money = Number(localStorage.getItem('M'));
+        stockValue = Number(localStorage.getItem('SV'));
+        stockCount = Number(localStorage.getItem('SC'));
+        document.getElementById("buy").innerText = Number(localStorage.getItem('IB'));
+        alert("성공적으로 불러왔습니다!");
+      } else {
+        alert("비밀번호가 잘못되었습니다.");
+      }
+    }
+  } else {
+    alert("저장된 파일이 없습니다.");
+  }
+}
 
-        }
         document.addEventListener('keydown', function(event) {
   if (event.key === '`') {
     if(madegame==false) {
